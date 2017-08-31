@@ -14,13 +14,14 @@ SECRET_KEY = getenv('PIZZA_ADMIN_PAGE_SECRET_KEY')
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 app.config['SESSION_TYPE'] = 'filesystem'
+ACCESS_ERROR = 401
 
 
 class AuthException(HTTPException):
     def __init__(self, message):
         super().__init__(message, Response(
             'Could not verify your access level for that URL.\n'
-            'You have to login with proper credentials', 401,
+            'You have to login with proper credentials', ACCESS_ERROR,
             {'WWW-Authenticate': 'Basic realm="Login Required"'}))
 
 
