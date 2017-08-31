@@ -1,0 +1,5 @@
+export PIZZA_ADMIN_PAGE_LOGIN='admin'
+export PIZZA_ADMIN_PAGE_PASSWORD='Admin'
+export PIZZA_ADMIN_PAGE_SECRET_KEY='pizza secret key'
+export PATH_TO_PIZZA_DB='pizza.db'
+export PIZZA_BOT_TOKEN="__put here Your telegramm bot token__"

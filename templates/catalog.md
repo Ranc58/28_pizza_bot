@@ -1,10 +1,10 @@
 Пицца из нашего меню:
 
 {% for entry in catalog -%}
-*{{ entry.title }} #{{loop.index}}*
-{{ entry.description }}
-    {%- for choice in entry.choices %}
-        {{ choice.title }} - *{{ choice.price }} руб.*
+*{{ entry.pizza_title }} #{{loop.index}}*
+{{ entry.pizza_toppings }}
+    {%- for choice in entry.pizza_variable_content %}
+        *{{ choice.pizza_size }} - {{ choice.pizza_price }} руб.*
     {%- endfor %}
 
 {% endfor %}
