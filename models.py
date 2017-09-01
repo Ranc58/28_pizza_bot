@@ -26,6 +26,6 @@ class PizzaVariableData(BASE):
     pizza_size = Column(String(64))
     pizza_price = Column(Integer)
 
-    def __str__(self):
+    def __repr__(self):
         return '{size} - {price}р.'.format(size=self.pizza_size,
                                            price=self.pizza_price)
