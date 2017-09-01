@@ -4,25 +4,19 @@ from sqlalchemy.orm import relationship
 
 BASE = declarative_base()
 
-association_table = Table('association', BASE.metadata,
-                          Column('pizzas_id', Integer,
-                                 ForeignKey('pizzas.pizza_id')),
-                          Column('pizza_variable_data_id', Integer,
-                                 ForeignKey('pizza_variable_data.content_id')))
-
 
 class Pizza(BASE):
     __tablename__ = 'pizzas'
     pizza_id = Column(Integer, primary_key=True)
     pizza_title = Column(String(128))
     pizza_toppings = Column(Text)
-    pizza_variable_content = relationship('PizzaVariableData',
-                                          secondary=association_table)
+    pizza_variable_content = relationship('PizzaVariableData')
 
 
 class PizzaVariableData(BASE):
     __tablename__ = 'pizza_variable_data'
     content_id = Column(Integer, primary_key=True)
+    parent_pizza_id = Column(Integer, ForeignKey('pizzas.pizza_id'))
     pizza_size = Column(String(64))
     pizza_price = Column(Integer)
 
