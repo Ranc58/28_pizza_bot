@@ -9,7 +9,7 @@ from models import BASE, Pizza, PizzaVariableData
 
 PATH_TO_DB = getenv('PATH_TO_PIZZA_DB')
 ENGINE = create_engine('sqlite:///{path_to_db}'.format(path_to_db=PATH_TO_DB),
-                       echo=True)
+                       echo=False)
 
 
 def create_db():
@@ -29,7 +29,7 @@ def update_pizza_catalog(catalog):
         for choice in pizza['choices']:
             choices = PizzaVariableData(**{'pizza_size': choice['title'],
                                            'pizza_price': choice['price']})
-            new_pizza.pizza_variable_content.append(choices)
+            new_pizza.pizza_variable_data.append(choices)
         session.add(new_pizza)
     session.commit()
 

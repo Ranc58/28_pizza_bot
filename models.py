@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, Column, String, Text, Integer, Table
+from sqlalchemy import ForeignKey, Column, String, Text, Integer
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -10,7 +10,7 @@ class Pizza(BASE):
     pizza_id = Column(Integer, primary_key=True)
     pizza_title = Column(String(128))
     pizza_toppings = Column(Text)
-    pizza_variable_content = relationship('PizzaVariableData')
+    pizza_variable_data = relationship('PizzaVariableData')
 
 
 class PizzaVariableData(BASE):

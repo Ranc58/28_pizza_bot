@@ -1,7 +1,7 @@
 import telebot
 from jinja2 import Template
 from os import getenv
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, joinedload
 from db_operations import ENGINE
 from models import Pizza
 
@@ -28,9 +28,9 @@ def greet(message):
 @bot.message_handler(commands=['menu'])
 def show_catalog(message):
     session = sessionmaker(bind=ENGINE)()
-    catalog = session.query(Pizza).all()
+    catalog = session.query(Pizza).options(joinedload('pizza_variable_data'))
     bot.send_message(message.chat.id,
-                     catalog_tmpl.render(catalog=catalog),
+                     catalog_tmpl.render(catalog=catalog.all()),
                      parse_mode='Markdown')
 
 
