@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    volumes:
+     - .:/src
+    ports:
+     - "5000:5000"
+    command: python3 admin_page.py --host='0.0.0.0'
+  bot:
+    build: .
+    command: python3 bot.py
+    volumes:
+      - .:/src

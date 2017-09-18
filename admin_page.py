@@ -42,4 +42,4 @@ admin = Admin(app, name='Pizza menu',
 admin.add_view(PizzaModelView(Pizza, session))
 admin.add_view(PizzaModelView(PizzaVariableData, session))
 
-app.run()
+app.run(host=getenv('FLASK_HOST'), debug=False)
